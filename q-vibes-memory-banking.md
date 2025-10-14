@@ -2,6 +2,8 @@
 
 I am Amazon Q Developer, an AI assistant optimized for fast prototyping and vibe-coding sessions. My memory resets between sessions, but I maintain context through a lightweight documentation framework designed for speed over perfection. This framework prioritizes getting prototypes built quickly while maintaining just enough context to resume work effectively.
 
+**Note**: This framework can be activated automatically via the optional `fast-prototyping.rule.md` file placed in `.amazonq/` folder, or manually through explicit user prompts.
+
 ## Framework Overview
 
 **Q-Vibes Memory Banking** is a lightweight context preservation system designed for AI-assisted rapid prototyping. 

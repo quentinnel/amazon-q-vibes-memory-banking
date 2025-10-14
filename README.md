@@ -37,9 +37,56 @@ This makes the framework complete and self-contained. The AI gets both:
 - **How to work** (from the framework instructions in `q-vibes-memory-banking.md`)
 - **What to work on** (from the 4 context files: `idea.md`, `vibe.md`, `state.md`, `decisions.md`)
 
+## Optional Rule File (Bonus Tip)
+
+The Q CLI has built-in support for rule files that can automatically activate behaviors without explicit prompts. The `fast-prototyping.rule.md` file in the `/rules/` folder is a **bonus feature** that leverages this Q CLI capability.
+
+**Important**: The rule file is **not part of the core framework** - it's simply a convenience feature that:
+- Uses Q CLI's native rule system to auto-detect the framework
+- Eliminates the need for explicit prompts when starting/resuming sessions
+- Provides a seamless experience for users who want the framework always active
+
+**How it works**:
+- Place `rules/fast-prototyping.rule.md` in your project's `.amazonq/rules/` folder
+- Q CLI automatically reads and applies the rule when starting sessions
+- The AI will automatically look for and use the Q-Vibes framework files
+
+**Without the rule file**: You simply use the manual prompts provided in the [Example Prompts](#example-prompts) section - the framework works exactly the same way.
+
 ## Quick Project Setup
 
-Follow these steps to set up a new prototype with Q-Vibes Memory Banking (paths are relative to example project root under the /examples/ folder):
+You have two options for setting up Q-Vibes Memory Banking:
+
+### Option 1: Automatic Setup (Recommended)
+Use the optional rule file for automatic framework activation:
+
+```bash
+# Create Q-Vibes memory banking structure
+mkdir -p .amazonq/vibes
+cd .amazonq/vibes
+
+# Copy the AI instructions (tells AI how to use the framework)
+cp ../../q-vibes-memory-banking.md .
+
+# Copy ALL template files (AI uses these as references for consistent formatting)
+cp ../../templates/*.md ./
+
+# Copy the optional rule file for automatic activation
+mkdir -p ../rules
+cp ../../rules/fast-prototyping.rule.md ../rules/
+
+# Customize your collaboration template
+# Edit vibe.md to match your preferences
+
+# Return to project root
+cd ../..
+
+# Start session - AI will automatically detect and use the framework
+q chat 
+```
+
+### Option 2: Manual Setup (Prompt-Based)
+Use explicit prompts without the rule file:
 
 ```bash
 # Create Q-Vibes memory banking structure
@@ -58,7 +105,7 @@ cp ../../templates/*.md ./
 # Return to project root
 cd ../..
 
-# Start a new prototype session prompting the AI (see example prompts below)
+# Start a new prototype session using explicit prompts (see example prompts below)
 q chat 
 ```
 
@@ -67,6 +114,10 @@ q chat
 - Using `state.md` template when creating and maintaining technical snapshot
 - Using `decisions.md` template when logging decisions
 - Following your `vibe.md` preferences for git workflow, security practices, and collaboration style
+
+**With Option 1 (Automatic):** The AI detects the framework automatically via the rule file and starts using it immediately.
+
+**With Option 2 (Manual):** You use the example prompts below to explicitly tell the AI to use the framework.
 
 Just describe your prototype idea to the AI, and it will follow the template formats while using your `vibe.md` preferences.
 
@@ -83,16 +134,24 @@ This example shows the Q-Vibes Memory Banking framework applied to a real protot
 ## Step-by-Step Usage Guide
 
 ### 1. Starting a New Prototype Session
-1. **AI reads the framework instructions** (`q-vibes-memory-banking.md`) to understand how to use the framework
-2. **Describe your prototype idea** to the AI assistant (can be brief - just the core concept)
-3. **AI creates `idea.md`** using the template structure:
+
+**Option 1 (Automatic with Rule File):**
+1. **AI automatically detects the framework** via `fast-prototyping.rule.md` in `.amazonq/` folder
+2. **AI reads framework instructions** and template files automatically
+3. **Describe your prototype idea** to the AI assistant (can be brief - just the core concept)
+4. **AI creates `idea.md`** using the template structure
+5. **AI follows your `vibe.md` preferences** and starts coding
+
+**Option 2 (Manual with Prompts):**
+1. **Use the starting prompt** (see [Example Prompts](#example-prompts) below)
+2. **AI reads the framework instructions** (`q-vibes-memory-banking.md`) to understand how to use the framework
+3. **Describe your prototype idea** to the AI assistant (can be brief - just the core concept)
+4. **AI creates `idea.md`** using the template structure:
    - If your description covers all template sections → AI creates complete `idea.md`
    - If information is missing → AI asks clarifying questions to fill gaps
    - You review and approve the final `idea.md` before proceeding
-4. **AI follows your `vibe.md` preferences** for collaboration style, workflow, and project setup
-5. **Start coding** - AI maintains `state.md` automatically
-
-*See the [Example Prompts](#example-prompts) section below for the exact prompt to use when starting a new project.*
+5. **AI follows your `vibe.md` preferences** for collaboration style, workflow, and project setup
+6. **Start coding** - AI maintains `state.md` automatically
 
 ### 2. Collaboration Style Configuration
 The Q-Vibes framework is **highly configurable** through your `vibe.md` file. You can specify:
@@ -105,13 +164,21 @@ The Q-Vibes framework is **highly configurable** through your `vibe.md` file. Yo
 The template in `/templates/vibe.md` includes an example git workflow configuration. Customize it to match your preferred working style.
 
 ### 3. Resuming Work (Key Benefit!)
-1. **AI reads the framework instructions** (`q-vibes-memory-banking.md`) to understand how to work
-2. **AI reads all 4 context files** (`idea.md`, `vibe.md`, `state.md`, `decisions.md`) - takes ~30 seconds
+
+**Option 1 (Automatic with Rule File):**
+1. **AI automatically detects the framework** via `fast-prototyping.rule.md` in `.amazonq/` folder
+2. **AI reads all context files** (`q-vibes-memory-banking.md`, `idea.md`, `vibe.md`, `state.md`, `decisions.md`) automatically
 3. **AI confirms context**: "I see we're building [X], currently working on [Y], next step is [Z]"
 4. **AI continues work** following your vibe.md preferences
 5. **No re-explaining needed** - context is preserved
 
-*See the [Example Prompts](#example-prompts) section below for the exact prompt to use when resuming work.*
+**Option 2 (Manual with Prompts):**
+1. **Use the resuming prompt** (see [Example Prompts](#example-prompts) below)
+2. **AI reads the framework instructions** (`q-vibes-memory-banking.md`) to understand how to work
+3. **AI reads all 4 context files** (`idea.md`, `vibe.md`, `state.md`, `decisions.md`) - takes ~30 seconds
+4. **AI confirms context**: "I see we're building [X], currently working on [Y], next step is [Z]"
+5. **AI continues work** following your vibe.md preferences
+6. **No re-explaining needed** - context is preserved
 
 ### 4. Ending a Session
 1. **AI updates `state.md`** with current progress
@@ -120,6 +187,8 @@ The template in `/templates/vibe.md` includes an example git workflow configurat
 4. **Ready for next session** - no context loss
 
 ## Example Prompts
+
+**Note:** These prompts are only needed if you're using Option 2 (Manual Setup). With Option 1 (Automatic Setup), the AI detects and uses the framework automatically via the rule file.
 
 ### Starting a New Prototype Session
 ```
